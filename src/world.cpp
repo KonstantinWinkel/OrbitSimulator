@@ -59,7 +59,7 @@ void World::simulate() {
             }            
         }
 
-        for(Controller * c: controllers) c->applyControlForce(t);
+        for(Controller * c: controllers) c->applyControlForce(t, simulation_timestep);
 
         for(Object * o: objects) o->simulateTimeStep(simulation_timestep);
 
