@@ -17,8 +17,8 @@ int main(int argc, char * agrv[]) {
     if(argc > 1) simulation_time = strtod(agrv[1], nullptr);
     
     Object Earth("Earth", M_EARTH, {0,0,0}, {0,0,0});
-    Object sat1("Satellite1", 5, {0,R_EARTH + 300000, 0}, {7725.84 ,0 ,0});
-    Object sat2("Satellite2", 5, Earth, R_EARTH + 900000, 0, 0, 0, 0);
+    Object sat1("Satellite1", 5, {0,R_EARTH + 300.0_km, 0}, {7725.84 ,0 ,0});
+    Object sat2("Satellite2", 5, Earth, R_EARTH + 900_km, 0, 0, 0, 0);
 
     Earth.setStatic(true);
 
