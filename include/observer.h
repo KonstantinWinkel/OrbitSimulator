@@ -5,6 +5,7 @@
 
 // own includes
 #include "object.h"
+#include "type-definitions.h"
 
 // cpp includes
 #include <fstream>
@@ -16,15 +17,15 @@ class Observer {
         std::string name;
         std::ofstream output;
 
-        long double last_log = 0;
-        long double log_interval = 1;
+        ld last_log = 0;
+        ld log_interval = 1;
     
     public:
-        Observer(std::string name, long double log_interval);
+        Observer(std::string name, ld log_interval);
 
         virtual void initializeObserver() = 0;
-        virtual void logState(long double timestamp);
-        virtual void customLogState(long double timestamp) = 0;
+        virtual void logState(ld timestamp);
+        virtual void customLogState(ld timestamp) = 0;
         virtual void finalizeObserver() = 0;
 };
 
@@ -34,10 +35,10 @@ class PositionObserver: public Observer {
         Object * obj;
 
     public:
-        PositionObserver(std::string name, long double log_interval, Object * obj);
+        PositionObserver(std::string name, ld log_interval, Object * obj);
         
         void initializeObserver() override;
-        void customLogState(long double timestamp) override;
+        void customLogState(ld timestamp) override;
         void finalizeObserver() override;
 };
 
@@ -48,10 +49,10 @@ class VelocityObserver: public Observer {
         Object * obj;
 
     public:
-        VelocityObserver(std::string name, long double log_interval, Object * obj);
+        VelocityObserver(std::string name, ld log_interval, Object * obj);
         
         void initializeObserver() override;
-        void customLogState(long double timestamp) override;
+        void customLogState(ld timestamp) override;
         void finalizeObserver() override;
 };
 
@@ -62,10 +63,10 @@ class DistanceObserver: public Observer {
         Object * obj2;
     
     public:
-        DistanceObserver(std::string name, long double log_interval, Object * obj1, Object * obj2);
+        DistanceObserver(std::string name, ld log_interval, Object * obj1, Object * obj2);
         
         void initializeObserver() override;
-        void customLogState(long double timestamp) override;
+        void customLogState(ld timestamp) override;
         void finalizeObserver() override;
 };
 
@@ -75,10 +76,10 @@ class SpeedObserver: public Observer {
         Object * obj;
 
     public:
-        SpeedObserver(std::string name, long double log_interval, Object * obj);
+        SpeedObserver(std::string name, ld log_interval, Object * obj);
         
         void initializeObserver() override;
-        void customLogState(long double timestamp) override;
+        void customLogState(ld timestamp) override;
         void finalizeObserver() override;
 };
 
@@ -88,10 +89,10 @@ class OrientationObserver: public Observer{
         Object * obj;
 
     public:
-        OrientationObserver(std::string name, long double log_interval, Object * obj);
+        OrientationObserver(std::string name, ld log_interval, Object * obj);
 
         void initializeObserver() override;
-        void customLogState(long double timestamp) override;
+        void customLogState(ld timestamp) override;
         void finalizeObserver() override;
 };
 

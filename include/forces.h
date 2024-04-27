@@ -3,12 +3,14 @@
 #ifndef _FORCES_H_
 #define _FORCES_H_
 
+// own includes
+
 // Eigen includes
 #include <Eigen/Dense>
 
 class Force {
     public:
-        static Eigen::Vector3<long double>  gravity(long double m1, long double m2, Eigen::Vector3<long double>  distance);
+        static Vec3  gravity(ld m1, ld m2, Vec3  distance);
 };
 
 #endif

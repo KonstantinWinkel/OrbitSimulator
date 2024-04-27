@@ -10,6 +10,7 @@
 #include "forces.h"
 #include "object.h"
 #include "observer.h"
+#include "type-definitions.h"
 #include "world.h"
 
 #endif

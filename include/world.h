@@ -7,6 +7,7 @@
 #include "controller.h"
 #include "object.h"
 #include "observer.h"
+#include "type-definitions.h"
 
 // cpp includes
 #include <iostream>
@@ -21,13 +22,12 @@ class World {
         std::vector<Observer * > observers;
         std::vector<Controller * > controllers;
 
-        long double simulation_timestep = 0.1;
-        long double simulation_time = 100.0;
-        long long writing_ratio = 10;
+        ld simulation_timestep = 0.1;
+        ld simulation_time = 100.0;
 
     public:
         World();
-        World(long double simulation_timestep, long double simulation_time);
+        World(ld simulation_timestep, ld simulation_time);
         
         ~World();
 
@@ -40,12 +40,12 @@ class World {
        
         void simulate();
 
-        void setSimulationTimestep(long double n);
-        void setSimulationTime(long double n);
+        void setSimulationTimestep(ld n);
+        void setSimulationTime(ld n);
         void setWritingRatio(long long n);
 
-        long double getSimulationTimestep();
-        long double getSimulationTime();
+        ld getSimulationTimestep();
+        ld getSimulationTime();
         long long getWritingRation();
 
 };

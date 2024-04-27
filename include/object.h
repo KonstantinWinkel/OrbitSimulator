@@ -3,54 +3,54 @@
 #ifndef _OBJECT_H_
 #define _OBJECT_H_
 
+// own includes
+#include "type-definitions.h"
+
 // cpp includes
 #include <string>
 #include <vector>
-
-// Eigen includes
-#include <Eigen/Dense>
 
 class Object {
     private:
 
         std::string name;
 
-        Eigen::Vector3<long double> acceleration;
-        Eigen::Vector3<long double> velocity;
-        Eigen::Vector3<long double> position;
+        Vec3 acceleration;
+        Vec3 velocity;
+        Vec3 position;
 
-        Eigen::Quaternion<long double> orientation;
-        Eigen::Vector3<long double> angular_velocity;
+        Quat orientation;
+        Vec3 angular_velocity;
 
-        long double mass;
+        ld mass;
         bool is_static = false;
         bool is_orientationless = false;
 
         // constructor for code grouping, should not be used on its own 
-        Object(std::string name, long double mass);
+        Object(std::string name, ld mass);
 
     public:
-        Object(std::string name, long double mass, Eigen::Vector3<long double> init_pos, Eigen::Vector3<long double> init_vel);
-        Object(std::string name, long double mass, Eigen::Vector3<long double> init_pos, Eigen::Vector3<long double> init_vel, Eigen::Vector3<long double> init_theta, Eigen::Vector3<long double> init_omega);
-        Object(std::string name, long double mass, Eigen::Vector3<long double> init_pos, Eigen::Vector3<long double> init_vel, Eigen::Quaternion<long double> init_Q, Eigen::Vector3<long double> init_dQ);
-        Object(std::string name, long double mass, Object central_body, long double semimajor_axis, long double eccentricity, long double inclination, long double RAAN, long double peri_arg);
+        Object(std::string name, ld mass, Vec3 init_pos, Vec3 init_vel);
+        Object(std::string name, ld mass, Vec3 init_pos, Vec3 init_vel, Vec3 init_theta, Vec3 init_omega);
+        Object(std::string name, ld mass, Vec3 init_pos, Vec3 init_vel, Quat init_Q, Vec3 init_dQ);
+        Object(std::string name, ld mass, Object central_body, ld semimajor_axis, ld eccentricity, ld inclination, ld RAAN, ld peri_arg);
         ~Object();
 
         void startTimeStep();
-        void addForce(Eigen::Vector3<long double>  force);
-        void simulateTimeStep(long double step);
+        void addForce(Vec3  force);
+        void simulateTimeStep(ld step);
 
         void setStatic(bool b);
         void setOrientationless(bool b);
 
-        long double getMass();
+        ld getMass();
         bool getStatic(); 
         std::string getName();
-        Eigen::Vector3<long double> getPosition();
-        Eigen::Vector3<long double> getVelocity();
-        Eigen::Quaternion<long double> getOrientationQuaternion();
-        Eigen::Vector3<long double> getOrientation();
-        Eigen::Vector3<long double> getAngularVelocity();
+        Vec3 getPosition();
+        Vec3 getVelocity();
+        Quat getOrientationQuaternion();
+        Vec3 getOrientation();
+        Vec3 getAngularVelocity();
 };
 
 #endif

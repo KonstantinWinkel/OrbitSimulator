@@ -8,14 +8,14 @@
 
 /* #region Parent of all Observers */
 
-Observer::Observer(std::string name, long double log_interval){
+Observer::Observer(std::string name, ld log_interval){
     this->name = name;
     this->output = std::ofstream(name + ".csv");
     this->log_interval = log_interval;
     this->last_log = -log_interval;
 }
 
-void Observer::logState(long double timestamp){
+void Observer::logState(ld timestamp){
     if(last_log + log_interval > timestamp) return;
 
     last_log = timestamp;
@@ -26,7 +26,7 @@ void Observer::logState(long double timestamp){
 
 /* #region Position Observer */
 
-PositionObserver::PositionObserver(std::string name, long double log_interval, Object * obj) : Observer("Position" + name, log_interval) {
+PositionObserver::PositionObserver(std::string name, ld log_interval, Object * obj) : Observer("Position" + name, log_interval) {
     this->obj = obj;
 }
 
@@ -34,7 +34,7 @@ void PositionObserver::initializeObserver() {
     output << "t,x,y,z" << std::endl;
 }
 
-void PositionObserver::customLogState(long double timestamp) {
+void PositionObserver::customLogState(ld timestamp) {
     output << timestamp << ", " << EigenUtils::Vector3ToCSV(obj->getPosition()) << std::endl;
 }
 
@@ -46,7 +46,7 @@ void PositionObserver::finalizeObserver() {
 
 /* #region Velocity Observer */
 
-VelocityObserver::VelocityObserver(std::string name, long double log_interval, Object * obj) : Observer("Velocity" + name, log_interval) {
+VelocityObserver::VelocityObserver(std::string name, ld log_interval, Object * obj) : Observer("Velocity" + name, log_interval) {
     this->obj = obj;
 }
 
@@ -54,7 +54,7 @@ void VelocityObserver::initializeObserver() {
     output << "t,x,y,z" << std::endl;
 }
 
-void VelocityObserver::customLogState(long double timestamp) {
+void VelocityObserver::customLogState(ld timestamp) {
     output << timestamp << ", " << EigenUtils::Vector3ToCSV(obj->getVelocity()) << std::endl;
 }
 
@@ -66,7 +66,7 @@ void VelocityObserver::finalizeObserver() {
 
 /* #region Distance Observer */
 
-DistanceObserver::DistanceObserver(std::string name, long double log_interval, Object * obj1, Object * obj2) : Observer("Distance" + name, log_interval) {
+DistanceObserver::DistanceObserver(std::string name, ld log_interval, Object * obj1, Object * obj2) : Observer("Distance" + name, log_interval) {
     this->obj1 = obj1;
     this->obj2 = obj2;
 }
@@ -75,7 +75,7 @@ void DistanceObserver::initializeObserver() {
     output << "t,s" << std::endl;
 }
 
-void DistanceObserver::customLogState(long double timestamp) {
+void DistanceObserver::customLogState(ld timestamp) {
     output << timestamp << ", " << (obj1->getPosition() - obj2->getPosition()).norm() << std::endl;
 }
 
@@ -87,7 +87,7 @@ void DistanceObserver::finalizeObserver() {
 
 /* #region Speed Observer */
 
-SpeedObserver::SpeedObserver(std::string name, long double log_interval, Object * obj) : Observer("Speed" + name, log_interval) {
+SpeedObserver::SpeedObserver(std::string name, ld log_interval, Object * obj) : Observer("Speed" + name, log_interval) {
     this->obj = obj;
 }
 
@@ -95,7 +95,7 @@ void SpeedObserver::initializeObserver() {
     output << "t,v" << std::endl;
 }
 
-void SpeedObserver::customLogState(long double timestamp) {
+void SpeedObserver::customLogState(ld timestamp) {
     output <<  timestamp << ", " << obj->getPosition().norm() << std::endl;
 }
 
@@ -107,7 +107,7 @@ void SpeedObserver::finalizeObserver() {
 
 /* #region Orientation Observer */
 
-OrientationObserver::OrientationObserver(std::string name, long double log_interval, Object * obj) : Observer("Orientation" + name, log_interval) {
+OrientationObserver::OrientationObserver(std::string name, ld log_interval, Object * obj) : Observer("Orientation" + name, log_interval) {
     this->obj = obj;
 }
 
@@ -115,7 +115,7 @@ void OrientationObserver::initializeObserver() {
     output << "t,x,y,z" << std::endl;
 }
 
-void OrientationObserver::customLogState(long double timestamp) {
+void OrientationObserver::customLogState(ld timestamp) {
     output <<  timestamp << ", " << EigenUtils::Vector3ToCSV(obj->getOrientation() * RAD2DEG) << std::endl;
 }
 

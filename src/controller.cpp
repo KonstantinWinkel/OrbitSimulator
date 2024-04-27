@@ -9,7 +9,7 @@ Controller::Controller(Object * obj) {
 
 /* #region Time Interval Controller */
 
-TimeIntervalController::TimeIntervalController(Object * obj, long double force) : Controller(obj) {
+TimeIntervalController::TimeIntervalController(Object * obj, ld force) : Controller(obj) {
     this->force = force;
 }
 
@@ -17,8 +17,8 @@ void TimeIntervalController::initializeController() {
 
 }
 
-void TimeIntervalController::applyControlForce(long double timestamp, long double delta_t) {
-    Eigen::Vector3<long double> movement_dir = obj->getVelocity();
+void TimeIntervalController::applyControlForce(ld timestamp, ld delta_t) {
+    Vec3 movement_dir = obj->getVelocity();
     movement_dir.normalize();
 
     for(Interval i: intervals) {
@@ -33,7 +33,7 @@ void TimeIntervalController::finalizeController() {
 
 }
 
-void TimeIntervalController::addInterval(Direction dir, long double start_time, long double end_time) {
+void TimeIntervalController::addInterval(Direction dir, ld start_time, ld end_time) {
     Interval i = {dir, start_time, end_time};
 
     intervals.push_back(i);

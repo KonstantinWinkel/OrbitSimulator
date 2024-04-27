@@ -8,6 +8,6 @@
 #include <tgmath.h>
 
 
-Eigen::Vector3<long double>  Force::gravity(long double m1, long double m2, Eigen::Vector3<long double>  distance) { 
+Vec3  Force::gravity(ld m1, ld m2, Vec3  distance) { 
     return distance * (-1) * (G_STAR * m1 * m2) / (powl(distance.norm(), 3)); 
 }

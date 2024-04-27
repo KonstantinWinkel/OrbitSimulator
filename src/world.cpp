@@ -10,7 +10,7 @@
 
 World::World() { }
 
-World::World(long double simulation_timestep, long double simulation_time) {
+World::World(ld simulation_timestep, ld simulation_time) {
     this->simulation_timestep = simulation_timestep;
     this->simulation_time = simulation_time;
 }
@@ -45,7 +45,7 @@ void World::simulate() {
     for(Observer * o: observers) o->initializeObserver();
     for(Controller * c: controllers) c->initializeController();
 
-    for(long double t = 0; t < simulation_time; t += simulation_timestep) {
+    for(ld t = 0; t < simulation_time; t += simulation_timestep) {
         for(Object * obj1: objects) {
             obj1->startTimeStep();
 
@@ -70,8 +70,8 @@ void World::simulate() {
 }
 
 
-void World::setSimulationTimestep(long double n) { simulation_timestep = n; }
-void World::setSimulationTime(long double n) { simulation_time = n; }
+void World::setSimulationTimestep(ld n) { simulation_timestep = n; }
+void World::setSimulationTime(ld n) { simulation_time = n; }
 
-long double World::getSimulationTimestep() { return simulation_timestep; }
-long double World::getSimulationTime() { return simulation_time; }
+ld World::getSimulationTimestep() { return simulation_timestep; }
+ld World::getSimulationTime() { return simulation_time; }

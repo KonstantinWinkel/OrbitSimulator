@@ -5,6 +5,7 @@
 
 // own includes
 #include "object.h"
+#include "type-definitions.h"
 
 class Controller {
 
@@ -15,7 +16,7 @@ class Controller {
         Controller(Object * obj);
 
         virtual void initializeController() = 0;
-        virtual void applyControlForce(long double timestamp, long double delta_t) = 0;
+        virtual void applyControlForce(ld timestamp, ld delta_t) = 0;
         virtual void finalizeController() = 0;
 };
 
@@ -29,23 +30,23 @@ class TimeIntervalController : public Controller {
     private:
         struct Interval {
             Direction dir;
-            long double start_time;
-            long double end_time;
+            ld start_time;
+            ld end_time;
         };
 
         std::vector<Interval> intervals;
 
-        long double force;
+        ld force;
 
     public:
 
-        TimeIntervalController(Object * obj, long double force);
+        TimeIntervalController(Object * obj, ld force);
 
         void initializeController() override;
-        void applyControlForce(long double timestamp, long double delta_t) override;
+        void applyControlForce(ld timestamp, ld delta_t) override;
         void finalizeController() override;
 
-        void addInterval(Direction dir, long double start_time, long double end_time);
+        void addInterval(Direction dir, ld start_time, ld end_time);
 };
 
 #endif

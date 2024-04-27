@@ -48,12 +48,16 @@ int main(int argc, char * agrv[]) {
     PositionObserver obs1(sat1.getName(), 1_s, &sat1);
     PositionObserver obs2(sat2.getName(), 1_s, &sat2);
 
-
+    // Create the world for our simulation that simulates one timestep every millisecond
+    // for as long as the simulation time is set
     World world(1_ms, simulation_time);
 
+    // add the objects and the observers to the world, this time using
+    // list initializers
     world.addObjects({&Earth, &sat1, &sat2});
     world.addObservers({&obs0, &obs1, &obs2});
 
+    // run the simulation
     world.simulate();
 
     return 0;
