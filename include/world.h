@@ -27,7 +27,7 @@ class World {
 
     public:
         World();
-        World(long double simulation_timestep, long double simulation_time, long double writing_ratio);
+        World(long double simulation_timestep, long double simulation_time);
         
         ~World();
 

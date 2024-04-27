@@ -104,3 +104,21 @@ void SpeedObserver::finalizeObserver() {
 }
 
 /* #endregion */
+
+/* #region Orientation Observer */
+
+OrientationObserver::OrientationObserver(std::string name, long double log_interval, Object * obj) : Observer("Orientation" + name, log_interval) {
+    this->obj = obj;
+}
+
+void OrientationObserver::initializeObserver() {
+    output << "t,x,y,z" << std::endl;
+}
+
+void OrientationObserver::customLogState(long double timestamp) {
+    output <<  timestamp << ", " << EigenUtils::Vector3ToCSV(obj->getOrientation() * RAD2DEG) << std::endl;
+}
+
+void OrientationObserver::finalizeObserver() {
+    
+}

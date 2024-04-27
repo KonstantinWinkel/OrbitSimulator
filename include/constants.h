@@ -36,7 +36,6 @@ inline long double operator"" _AU(long long unsigned int au) { return au * ASTRO
 inline long double operator"" _lmin(long double lightminutes) { return lightminutes * LIGHT_SPEED * 60.0; }
 inline long double operator"" _lmin(long long unsigned int lightminutes) { return lightminutes * LIGHT_SPEED * 60.0; }
 
-
 inline long double operator"" _ls(long double lightseconds) { return lightseconds * LIGHT_SPEED; }
 inline long double operator"" _ls(long long unsigned int lightseconds) { return lightseconds * LIGHT_SPEED; }
 

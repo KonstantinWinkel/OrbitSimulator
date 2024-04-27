@@ -10,10 +10,9 @@
 
 World::World() { }
 
-World::World(long double simulation_timestep, long double simulation_time, long double writing_ratio) {
+World::World(long double simulation_timestep, long double simulation_time) {
     this->simulation_timestep = simulation_timestep;
     this->simulation_time = simulation_time;
-    this->writing_ratio = writing_ratio;
 }
 
 World::~World() { }
@@ -42,7 +41,6 @@ void World::addObservers(std::vector<Observer * > observers) {
 }
 
 void World::simulate() {
-    long long last_write = writing_ratio;
 
     for(Observer * o: observers) o->initializeObserver();
     for(Controller * c: controllers) c->initializeController();
@@ -74,8 +72,6 @@ void World::simulate() {
 
 void World::setSimulationTimestep(long double n) { simulation_timestep = n; }
 void World::setSimulationTime(long double n) { simulation_time = n; }
-void World::setWritingRatio(long long n) { writing_ratio = n; }
 
 long double World::getSimulationTimestep() { return simulation_timestep; }
 long double World::getSimulationTime() { return simulation_time; }
-long long World::getWritingRation() {return writing_ratio; }

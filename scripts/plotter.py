@@ -79,6 +79,25 @@ def plotDistances():
 
     plt.show()
 
+def plotOrientations():
+    result = glob.glob('Orientation*.csv')
+
+    if len(result) == 0:
+        return
+
+    fig = plt.figure(figsize=(12,10))
+    ax = fig.add_subplot(111, )
+
+    for file in result:
+        points = pandas.read_csv(file)
+        
+        ax.plot(points['t'].values, points['x'].values,)
+        ax.plot(points['t'].values, points['y'].values,)
+        ax.plot(points['t'].values, points['z'].values,)
+
+    plt.show()
+
 plotPositions()
 plotSpeeds()
 plotDistances()
+plotOrientations()

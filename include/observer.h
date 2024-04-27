@@ -70,12 +70,26 @@ class DistanceObserver: public Observer {
 };
 
 class SpeedObserver: public Observer {
+
     private:
         Object * obj;
 
     public:
         SpeedObserver(std::string name, long double log_interval, Object * obj);
         
+        void initializeObserver() override;
+        void customLogState(long double timestamp) override;
+        void finalizeObserver() override;
+};
+
+class OrientationObserver: public Observer{
+
+    private:
+        Object * obj;
+
+    public:
+        OrientationObserver(std::string name, long double log_interval, Object * obj);
+
         void initializeObserver() override;
         void customLogState(long double timestamp) override;
         void finalizeObserver() override;
